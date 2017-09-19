@@ -13,7 +13,11 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('getData', 'BlogController@index');
+Route::get('getBlogs', 'BlogController@index');
+
+Route::post('storeBlog', 'BlogController@store');
+Route::get('showBlog/{id}', 'BlogController@show');
+Route::get('getFirst', 'BlogController@getFirst');
 
 Route::post('signUp', 'AuthController@signUp');
 Route::post('signIn', 'AuthController@signIn');
