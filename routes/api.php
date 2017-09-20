@@ -22,5 +22,7 @@ Route::get('getFirst', 'BlogController@getFirst');
 Route::post('signUp', 'AuthController@signUp');
 Route::post('signIn', 'AuthController@signIn');
 Route::get('getUser', 'AuthController@getUser');
+Route::post('storeUser', 'AuthController@storeUser');
+Route::post('inputUser', 'AuthController@inputUser');
 
 Route::any('{path?}', 'MainController@index')->where("path", ".+");

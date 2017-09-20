@@ -75,18 +75,21 @@ class AuthController extends Controller
     {
       $check = User::where('email', '=', $email)->first();
       if(!empty($check))
-      {
-        //return password is wrong
+        {
+          return Response::json(['error' => 'Wrong Email']);
+        }
+      else {
+        $check = User::where('password', '=', $password)->first();
+        if(!empty($check))
+        {
+          return Response::json(['error' => 'Wrong Password']);
+        }
       }
-      else
-      {
-        //return email is wrong
+      else {
+        {
+          return Response::json(['token' => $token]);
+        }
       }
-      //return Response::json(['error' => 'Wrong Email/Password']);
-    }
-    else
-    {
-      return Response::json(['token' => $token]);
     }
   }
 
