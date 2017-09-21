@@ -67,29 +67,45 @@ class AuthController extends Controller
 
     $email = $request->input('email');
     $password = $request->input('password');
-    $credentials = compact("email", "password");
+    $credentials = compact('email', 'password');
 
     $token = JWTAuth::attempt($credentials);
 
     if($token == false)
     {
-      $check = User::where('email', '=', $email)->first();
-      if(!empty($check))
-        {
-          return Response::json(['error' => 'Wrong Email']);
-        }
-      else {
-        $check = User::where('password', '=', $password)->first();
-        if(!empty($check))
-        {
-          return Response::json(['error' => 'Wrong Password']);
-        }
-      }
-      else {
-        {
-          return Response::json(['token' => $token]);
-        }
-      }
+      return Response::json(['error' => 'invalid credentials']);
+      // $userEmail = User::where('email', '=', $email)->first();
+      // $userPassword = User::where('email', '=', $userEmail)->pluck('password');
+      //
+      // if(!empty($userEmail))
+      // {
+      //   if(!empty($userPassword) || $userPassword != $password)
+      //   {
+      //     return Response::json(['error' => 'invalid password']);
+      //   }
+      // }
+      // else
+      // {
+      //   return Response::json(['error' => 'invalid email']);
+      // }
+
+
+      // if(!empty($check))
+      //   {
+      //     return Response::json(['error' => 'Wrong Email']);
+      //   }
+      // else
+      // {
+      //   $check = User::where('password', '=', $password)->first();
+      //   if(!empty($check))
+      //   {
+      //     return Response::json(['error' => 'Wrong Password']);
+      //   }
+      // }
+    }
+    else
+    {
+      return Response::json(['token' => $token]);
     }
   }
 
