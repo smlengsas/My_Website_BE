@@ -25,4 +25,7 @@ Route::get('getUser', 'AuthController@getUser');
 Route::post('storeUser', 'AuthController@storeUser');
 Route::post('inputUser', 'AuthController@inputUser');
 
+Route::post('storePhoto', 'PhotosController@store');
+Route::get('getPhotos', 'PhotosController@getPhotos');
+
 Route::any('{path?}', 'MainController@index')->where("path", ".+");
